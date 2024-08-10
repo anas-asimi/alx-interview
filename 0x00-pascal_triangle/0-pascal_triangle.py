@@ -1,4 +1,10 @@
+#!/usr/bin/python3
+""" pascal triangle
+"""
+
 def pascal_triangle(n):
+    """ returns pascal triangle
+    """
     triangle = []
     for row in range(1, n + 1):
         rowElements = []
