@@ -26,6 +26,8 @@ def canUnlockAll(boxes):
     Returns:
         _type_: _description_
     """
+    import sys
+    sys.setrecursionlimit(1500)
     boxes = [{"keys": x, "isOpened": False} for x in boxes]
     unlockBox(boxes[0], boxes)
     for box in boxes:
