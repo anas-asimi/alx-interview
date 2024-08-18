@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def unlockBox(box, boxes):
     box["isOpened"] = True
     for key in box["keys"]:
