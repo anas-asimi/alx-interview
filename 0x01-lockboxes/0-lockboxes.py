@@ -1,6 +1,16 @@
 #!/usr/bin/python3
+"""
+0-lockboxes.py
+"""
+
 
 def unlockBox(box, boxes):
+    """
+    unlockBox
+    Args:
+        box (_type_): _description_
+        boxes (_type_): _description_
+    """
     box["isOpened"] = True
     for key in box["keys"]:
         if boxes[key] and not boxes[key]["isOpened"]:
