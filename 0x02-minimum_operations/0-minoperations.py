@@ -3,13 +3,16 @@
 0-minoperations.py
 """
 from typing import Union
+import sys
+
+sys.setrecursionlimit(1500)
 
 
 def find_smallest_number(*args) -> Union[int, None]:
-    """_summary_
-
+    """
+    _summary_
     Returns:
-        int | None: _description_
+        Union[int, None]: _description_
     """
     smallest = None
     for num in args:
@@ -20,14 +23,13 @@ def find_smallest_number(*args) -> Union[int, None]:
 
 
 def do_operation(text: str, n: int, operation: str, clipboard: str) -> int:
-    """_summary_
-
+    """
+    _summary_
     Args:
         text (str): _description_
         n (int): _description_
         operation (str): _description_
         clipboard (str): _description_
-
     Returns:
         _type_: _description_
     """
@@ -51,11 +53,10 @@ def do_operation(text: str, n: int, operation: str, clipboard: str) -> int:
 
 
 def minOperations(n: int) -> int:
-    """_summary_
-
+    """
+    _summary_
     Args:
         n (int): _description_
-
     Returns:
         _type_: _description_
     """
