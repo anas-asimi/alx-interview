@@ -9,4 +9,6 @@ n = 4
 print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))
 
 n = 12
+print(type(n))
+print(type(n) is int)
 print("Min # of operations to reach {} char: {}".format(n, minOperations(n)))

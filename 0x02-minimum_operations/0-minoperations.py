@@ -5,7 +5,7 @@
 from typing import Union
 import sys
 
-sys.setrecursionlimit(1500)
+sys.setrecursionlimit(2000)
 
 
 def find_smallest_number(*args) -> Union[int, None]:
@@ -60,6 +60,8 @@ def minOperations(n: int) -> int:
     Returns:
         _type_: _description_
     """
+    if type(n) is not int or n <= 1:
+        return 0
     text = 'H'
     numberOfOp = do_operation(text, n, 'Copy All', '')
     return numberOfOp
