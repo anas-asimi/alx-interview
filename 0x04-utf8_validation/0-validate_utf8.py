@@ -7,14 +7,17 @@
 from typing import List
 
 
-def validUTF8(data: List) -> bool:
+def validUTF8(data: List[int]) -> bool:
     """validUTF8
     Args:
         data (List): _description_
     Returns:
         bool: _description_
     """
+    if len(data) == 0:
+        return False
     for n in data:
-        if n > 127:
-            return False
+        if isinstance(n, int) and n <= 127:
+            continue
+        return False
     return True
