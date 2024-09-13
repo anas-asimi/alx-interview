@@ -23,7 +23,7 @@ def print_board(size, pieces):
     """
     print_board
     Args:
-        size (_type_): 
+        size (_type_):
         pieces (_type_):
     """
     # Create an empty board
