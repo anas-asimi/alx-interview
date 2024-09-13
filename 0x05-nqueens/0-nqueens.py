@@ -20,6 +20,12 @@ except ValueError:
 
 
 def print_board(size, pieces):
+    """
+    print_board
+    Args:
+        size (_type_): 
+        pieces (_type_):
+    """
     # Create an empty board
     board = [['.' for _ in range(size)] for _ in range(size)]
     # Place pieces on the board
@@ -46,6 +52,14 @@ def is_attacking(pos0, pos1):
 
 
 def get_solution(N: int, queens: list):
+    """
+    get_solution
+    Args:
+        N (int):
+        queens (list):
+    Returns:
+        _type_:
+    """
     current_col = len(queens)
     for row in range(0, N):
         current_position = [current_col, row]
@@ -69,27 +83,3 @@ for i in range(1, N-1):
     solution = get_solution(N, [first_queen])
     print(solution)
     # print_board(N, solution)
-    print()
-
-# for i in range(1, N-1):
-#     """
-#     solutions finder
-#     """
-#     first_queen = [0, i]
-#     solution = [first_queen]
-#     for j in range(1, N):
-#         """
-#         solution positions finder
-#         """
-#         for x in range(0, N):
-#             """
-#             checking possible position
-#             """
-#             current_position = [j, x]
-#             is_attacked_by = [is_attacking(
-#                 current_position, queen) for queen in solution]
-#             if not any(is_attacked_by):
-#                 solution.append(current_position)
-#                 continue
-#     print(solution)
-#     print()
