@@ -20,6 +20,7 @@ except ValueError:
 
 solutions = []
 
+
 def print_board(size, pieces):
     """
     print_board
