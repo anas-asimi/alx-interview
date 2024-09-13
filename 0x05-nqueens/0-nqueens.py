@@ -18,6 +18,7 @@ except ValueError:
     print("N must be a number")
     sys.exit(1)
 
+solutions = []
 
 def print_board(size, pieces):
     """
@@ -60,26 +61,31 @@ def get_solution(N: int, queens: list):
     Returns:
         _type_:
     """
+    # print(f'queens: {queens}')
     current_col = len(queens)
-    for row in range(0, N):
-        current_position = [current_col, row]
-        is_attacked_by = [is_attacking(current_position, queen)
-                          for queen in queens]
-        if not any(is_attacked_by):
+    if current_col == N:
+        solutions.append(queens)
+        # print(f'solution: {queens}')
+    else:
+        for row in range(0, N):
+            current_position = [current_col, row]
             new_queens = queens + [current_position]
-            if len(new_queens) == N:
-                return new_queens
-            else:
-                solution = get_solution(N, new_queens)
-                if solution is not None:
-                    return solution
+            is_attacked = False
+            for queen in queens:
+                if is_attacking(current_position, queen):
+                    is_attacked = True
+                    break
+            if not is_attacked:
+                get_solution(N, new_queens)
 
 
-for i in range(1, N-1):
+for i in range(0, N):
     """
     solutions finder
     """
     first_queen = [0, i]
-    solution = get_solution(N, [first_queen])
+    get_solution(N, [first_queen])
+
+for solution in solutions:
     print(solution)
     # print_board(N, solution)
