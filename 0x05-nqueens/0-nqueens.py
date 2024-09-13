@@ -1,49 +1,42 @@
 #!/usr/bin/python3
-"""N queens solution finder module.
+"""
+0-nqueens.py
 """
 import sys
 
 
-solutions = []
-"""The list of possible solutions to the N queens problem.
-"""
-n = 0
-"""The size of the chessboard.
-"""
-pos = None
-"""The list of possible positions on the chessboard.
-"""
+if len(sys.argv) != 2:
+    print("Usage: nqueens N")
+    sys.exit(1)
 
-
-def get_input():
-    """Retrieves and validates this program's argument.
-
-    Returns:
-        int: The size of the chessboard.
-    """
-    global n
-    n = 0
-    if len(sys.argv) != 2:
-        print("Usage: nqueens N")
-        sys.exit(1)
-    try:
-        n = int(sys.argv[1])
-    except Exception:
-        print("N must be a number")
-        sys.exit(1)
-    if n < 4:
+try:
+    N = int(sys.argv[1])
+    if N < 4:
         print("N must be at least 4")
         sys.exit(1)
-    return n
+except ValueError:
+    print("N must be a number")
+    sys.exit(1)
+
+
+def print_board(size, pieces):
+    # Create an empty board
+    board = [['.' for _ in range(size)] for _ in range(size)]
+    # Place pieces on the board
+    for piece in pieces:
+        x, y = piece
+        board[y][x] = 'o'  # You can change 'Q' to any piece symbol
+    # Print the board
+    for row in board:
+        print(' '.join(row))
 
 
 def is_attacking(pos0, pos1):
-    """Checks if the positions of two queens are in an attacking mode.
-
+    """
+    Checks if the positions of two queens are in an attacking mode.
     Args:
         pos0 (list or tuple): The first queen's position.
         pos1 (list or tuple): The second queen's position.
-
     Returns:
         bool: True if the queens are in an attacking position else False.
     """
@@ -52,62 +45,51 @@ def is_attacking(pos0, pos1):
     return abs(pos0[0] - pos1[0]) == abs(pos0[1] - pos1[1])
 
 
-def group_exists(group):
-    """Checks if a group exists in the list of solutions.
+def get_solution(N: int, queens: list):
+    current_col = len(queens)
+    for row in range(0, N):
+        current_position = [current_col, row]
+        is_attacked_by = [is_attacking(current_position, queen)
+                          for queen in queens]
+        if not any(is_attacked_by):
+            new_queens = queens + [current_position]
+            if len(new_queens) == N:
+                return new_queens
+            else:
+                solution = get_solution(N, new_queens)
+                if solution is not None:
+                    return solution
 
-    Args:
-        group (list of integers): A group of possible positions.
 
-    Returns:
-        bool: True if it exists, otherwise False.
+for i in range(1, N-1):
     """
-    global solutions
-    for stn in solutions:
-        i = 0
-        for stn_pos in stn:
-            for grp_pos in group:
-                if stn_pos[0] == grp_pos[0] and stn_pos[1] == grp_pos[1]:
-                    i += 1
-        if i == n:
-            return True
-    return False
-
-
-def build_solution(row, group):
-    """Builds a solution for the n queens problem.
-
-    Args:
-        row (int): The current row in the chessboard.
-        group (list of lists of integers): The group of valid positions.
+    solutions finder
     """
-    global solutions
-    global n
-    if row == n:
-        tmp0 = group.copy()
-        if not group_exists(tmp0):
-            solutions.append(tmp0)
-    else:
-        for col in range(n):
-            a = (row * n) + col
-            matches = zip(list([pos[a]]) * len(group), group)
-            used_positions = map(lambda x: is_attacking(x[0], x[1]), matches)
-            group.append(pos[a].copy())
-            if not any(used_positions):
-                build_solution(row + 1, group)
-            group.pop(len(group) - 1)
-
-
-def get_solutions():
-    """Gets the solutions for the given chessboard size.
-    """
-    global pos, n
-    pos = list(map(lambda x: [x // n, x % n], range(n ** 2)))
-    a = 0
-    group = []
-    build_solution(a, group)
-
-
-n = get_input()
-get_solutions()
-for solution in solutions:
+    first_queen = [0, i]
+    solution = get_solution(N, [first_queen])
     print(solution)
+    # print_board(N, solution)
+    print()
+
+# for i in range(1, N-1):
+#     """
+#     solutions finder
+#     """
+#     first_queen = [0, i]
+#     solution = [first_queen]
+#     for j in range(1, N):
+#         """
+#         solution positions finder
+#         """
+#         for x in range(0, N):
+#             """
+#             checking possible position
+#             """
+#             current_position = [j, x]
+#             is_attacked_by = [is_attacking(
+#                 current_position, queen) for queen in solution]
+#             if not any(is_attacked_by):
+#                 solution.append(current_position)
+#                 continue
+#     print(solution)
+#     print()
