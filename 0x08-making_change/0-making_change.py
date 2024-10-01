@@ -5,7 +5,10 @@
 from typing import List
 
 
-def findFewestCombination(coins: list[int], total: int, initial: int = 0,  coinsCounter: int = 0) -> int:
+def findFewestCombination(coins: list[int],
+                          total: int,
+                          initial: int = 0,
+                          coinsCounter: int = 0) -> int:
     """
     findFewestCombination
     Args:
