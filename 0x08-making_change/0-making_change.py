@@ -2,10 +2,9 @@
 """
 0-making_change.py
 """
-from typing import List
 
 
-def findFewestCombination(coins: list[int],
+def findFewestCombination(coins,
                           total: int,
                           initial: int = 0,
                           coinsCounter: int = 0,
