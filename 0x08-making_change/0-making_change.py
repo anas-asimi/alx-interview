@@ -26,11 +26,12 @@ def findFewestCombination(coins: list[int],
     for coin in coins:
         if (initial + coin) > total:
             continue
-
         else:
             # print(f'lets add: {coin}')
-            return findFewestCombination(
+            combination = findFewestCombination(
                 coins, total, initial+coin, coinsCounter + 1)
+            if combination is not None:
+                return combination
 
 
 def makeChange(coins, total: int) -> int:
