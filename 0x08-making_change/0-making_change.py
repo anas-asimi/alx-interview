@@ -2,7 +2,10 @@
 """
 0-making_change.py
 """
+import sys
 
+# increase Recursion limit
+sys.setrecursionlimit(2000)
 
 def findFewestCombination(coins,
                           total: int,
