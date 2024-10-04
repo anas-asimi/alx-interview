@@ -5,7 +5,8 @@
 import sys
 
 # increase Recursion limit
-sys.setrecursionlimit(2000)
+sys.setrecursionlimit(200000)
+
 
 def findFewestCombination(coins,
                           total: int,
@@ -24,15 +25,16 @@ def findFewestCombination(coins,
         int:
     """
     # print(f'total: {total} initial: {initial}  coinsCounter: {coinsCounter}')
-    if total == initial:
-        return coinsCounter
 
     for coin in coins:
+        if lastCoin is not None and coin > lastCoin:
+            continue
+
         if (initial + coin) > total:
             continue
 
-        if lastCoin is not None and coin > lastCoin:
-            continue
+        if initial+coin == total:
+            return coinsCounter + 1
 
         # print(f'lets add: {coin}')
         combination = findFewestCombination(
