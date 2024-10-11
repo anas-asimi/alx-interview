@@ -3,14 +3,15 @@
 0-island_perimeter.py
 """
 
-def expand_map(grid:list):
+
+def expand_map(grid: list):
     width = len(grid[0])
     for row in grid:
         row.append(0)
-        row.insert(0,0)
+        row.insert(0, 0)
     top_and_bottom = list([0] * (width + 2))
     grid.append(top_and_bottom)
-    grid.insert(0,top_and_bottom)
+    grid.insert(0, top_and_bottom)
     return grid
 
 
