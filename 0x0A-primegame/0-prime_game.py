@@ -5,13 +5,12 @@ This module defines a game to determine the winner
 based on the number of prime numbers up to a given n.
 """
 
+
 def count_prime(n):
     """
     Count the number of prime numbers from 1 to n.
-    
     Args:
         n (int): The upper limit of numbers to check for primes.
-    
     Returns:
         int: The number of prime numbers up to and including n.
     """
@@ -28,21 +27,25 @@ def count_prime(n):
 
     return sum(primes)
 
+
 def isWinner(x, nums):
     """
     Determine the winner of the game based on the number of primes.
-    
     Args:
         x (int): The number of rounds.
-        nums (list of int): List of integers representing the upper limits for each round.
-    
+        nums (list of int): List of integers
+        representing the upper limits for each round.
     Returns:
         str: The name of the winner ('Maria' or 'Ben') or None if it's a tie.
     """
     maria_wins = 0
     ben_wins = 0
+    round = 0
 
     for n in nums:
+        round += 1
+        if round > x:
+            break
         moves = count_prime(n)
         if moves % 2 == 0:
             ben_wins += 1  # Ben wins if moves are even
